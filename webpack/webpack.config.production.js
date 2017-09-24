@@ -39,6 +39,11 @@ const stringifiedEnv = {
   }, {}),
 };
 
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
+
 module.exports = {
   context: path.join(__dirname, '../src'),
 
@@ -58,6 +63,21 @@ module.exports = {
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: 'css-loader',
+        }),
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use: [
+            {
+              loader: 'css-loader',
+            },
+            {
+              loader: 'sass-loader',
+            },
+          ],
+          // use style-loader in development
+          fallback: 'style-loader',
         }),
       },
       {
@@ -82,6 +102,7 @@ module.exports = {
   },
 
   plugins: [
+    extractSass,
     new ExtractTextPlugin('css/bundle.[contenthash].css'),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
