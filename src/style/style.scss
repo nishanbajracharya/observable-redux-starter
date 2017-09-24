@@ -1,0 +1,55 @@
+$quote-marks: #999;
+$quote-title: #666;
+$quote-content: #333;
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #efefef;
+  font-family: sans-serif;
+}
+
+#app-container {
+  height: 100%;
+}
+
+.quote {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .content p {
+    color: $quote-content;
+    font-size: 4em;
+    position: relative;
+    text-align: center;
+    quotes: '“' '”' '‘' '’';
+    font-family: 'Garamond', serif;
+  }
+
+  .content p:before {
+    color: $quote-marks;
+    content: open-quote;
+  }
+
+  .content p:after {
+    color: $quote-marks;
+    content: close-quote;
+  }
+
+  .title {
+    font-size: 2em;
+    color: $quote-title;
+  }
+
+  .title:before {
+    content: '-';
+  }
+}

@@ -3,24 +3,29 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 
-import * as appActions from './actions/appActions';
+import * as quoteActions from './actions/quoteActions';
 
-const App = ({ app = {} }) => <div>{app.name}</div>;
+const App = ({ quote = {} }) => (
+  <div className="quote">
+    <div dangerouslySetInnerHTML={{ __html: quote.content }} className="content"/>
+    <p className="title">{quote.title}</p>
+  </div>
+);
 
 App.propTypes = {
-  app: PropTypes.object,
+  quote: PropTypes.object,
 };
 
 export default compose(
   connect(
-    ({ app }) => ({ app }),
+    ({ quote }) => ({ quote }),
     dispatch => ({
-      storeAppName: () => dispatch(appActions.storeAppName()),
+      fetchQuote: () => dispatch(quoteActions.fetchQuote()),
     })
   ),
   lifecycle({
     componentDidMount() {
-      this.props.storeAppName();
+      this.props.fetchQuote();
     },
   })
 )(App);

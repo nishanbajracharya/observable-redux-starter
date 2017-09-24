@@ -1,16 +1,21 @@
 import { logger } from 'redux-logger';
 import { createStore, applyMiddleware } from 'redux';
+import { createEpicMiddleware } from 'redux-observable';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import epic from './epics';
 import reducer from './reducers';
+import * as quoteService from './services/quoteService';
 
 const initialStore = {};
 
-const middlewares = [];
+const epicMiddleware = createEpicMiddleware(epic, {
+  dependencies: {
+    quoteService,
+  },
+});
 
-if (process.env.NODE_ENV === `development`) {
-  middlewares.push(logger);
-}
+const middlewares = [epicMiddleware, logger];
 
 const store = createStore(
   reducer,
