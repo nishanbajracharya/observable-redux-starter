@@ -15,25 +15,30 @@ dotenv.config();
 
 // Grab APP_* environment variables
 const envVars = Object.keys(process.env)
-.filter(key => /^APP_/i.test(key))
-.reduce((env, key) => {
-    env[key] = process.env[key];
+  .filter(key => /^APP_/i.test(key))
+  .reduce(
+    (env, key) => {
+      env[key] = process.env[key];
 
-    return env;
-  },
-  {
-    'NODE_ENV': 'development'
-  }
-);
+      return env;
+    },
+    {
+      NODE_ENV: 'development',
+    }
+  );
 
 // If strings are not stringified, webpack will treat them as actual code
 const stringifiedEnv = {
-'process.env': Object.keys(envVars)
-  .reduce((env, key) => {
+  'process.env': Object.keys(envVars).reduce((env, key) => {
     env[key] = JSON.stringify(envVars[key]);
 
     return env;
-  }, {})
+  }, {}),
+};
+
+const server = {
+  PORT: process.env.APP_PORT || '8000',
+  HOST: process.env.APP_HOST || '0.0.0.0',
 };
 
 module.exports = {
@@ -42,14 +47,19 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     hot: true,
-    port: 9000,
     compress: true,
-    host: 'localhost',
+    port: server.PORT,
+    host: server.HOST,
     historyApiFallback: true,
     contentBase: path.join(__dirname, '../dist'),
   },
 
-  entry: ['babel-polyfill', './index.js'],
+  entry: [
+    `webpack-dev-server/client?http://${server.HOST}:${server.PORT}`, // WebpackDevServer host and port
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors,
+    'babel-polyfill',
+    './index.js',
+  ],
 
   module: {
     rules: [
@@ -60,10 +70,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['css-hot-loader'].concat(ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: 'css-loader'
-        }))
+        use: ['css-hot-loader'].concat(
+          ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: 'css-loader',
+          })
+        ),
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
