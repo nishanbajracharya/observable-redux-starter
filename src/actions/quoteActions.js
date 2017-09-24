@@ -7,7 +7,7 @@ export const fetchQuote = () => {
   };
 };
 
-export const storeQuote = (quote = []) => {
+export const storeQuote = (quote = {}) => {
   return {
     type: STORE_QUOTE,
     payload: { quote },

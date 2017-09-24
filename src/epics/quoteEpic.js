@@ -4,9 +4,6 @@ import * as quoteActions from '../actions/quoteActions';
 
 export const fetchQuoteEpic = (action$, store, { quoteService }) =>
   action$
-    .distinctUntilChanged(
-      (prevAction, nextAction) => prevAction.type === nextAction.type
-    )
     .ofType(quoteActions.FETCH_QUOTE)
     .mergeMap(() =>
       quoteService

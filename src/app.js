@@ -5,20 +5,19 @@ import { compose, lifecycle } from 'recompose';
 
 import * as quoteActions from './actions/quoteActions';
 
-const App = ({ quote = {} }) => (
+const App = ({ quote = {}, fetchQuote = f => f }) => (
   <div className="quote">
-    {quote.content && (
-      <div
-        dangerouslySetInnerHTML={{ __html: quote.content }}
-        className="content"
-      />
-    )}
-    {quote.title && <p className="title">{quote.title}</p>}
+    {quote.title && <p className="content">{quote.title}</p>}
+    {quote.author && <p className="title">{quote.author}</p>}
+    <button className="btn" onClick={() => fetchQuote()}>
+      Another
+    </button>
   </div>
 );
 
 App.propTypes = {
   quote: PropTypes.object,
+  fetchQuote: PropTypes.func,
 };
 
 export default compose(
