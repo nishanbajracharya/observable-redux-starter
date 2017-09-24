@@ -40,7 +40,7 @@ const stringifiedEnv = {
 };
 
 const extractSass = new ExtractTextPlugin({
-  filename: "[name].[contenthash].css",
+  filename: "css/[name].[contenthash].css",
   disable: process.env.NODE_ENV === "development"
 });
 
