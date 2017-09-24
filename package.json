@@ -24,7 +24,10 @@
     "url": "https://github.com/nishanbajracharya/react-redux-observable-starter/issues"
   },
   "homepage": "https://github.com/nishanbajracharya/react-redux-observable-starter#readme",
-  "dependencies": {},
+  "dependencies": {
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
