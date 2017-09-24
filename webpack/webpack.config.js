@@ -1,7 +1,40 @@
+const fs = require('fs');
 const path = require('path');
+const dotenv = require('dotenv');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// Check if .env file exists
+if (!fs.existsSync('.env')) {
+  throw new Error('Environment variable file (.env) does not exist.');
+}
+
+// Initialize environment variables
+dotenv.config();
+
+// Grab APP_* environment variables
+const envVars = Object.keys(process.env)
+.filter(key => /^APP_/i.test(key))
+.reduce((env, key) => {
+    env[key] = process.env[key];
+
+    return env;
+  },
+  {
+    'NODE_ENV': 'development'
+  }
+);
+
+// If strings are not stringified, webpack will treat them as actual code
+const stringifiedEnv = {
+'process.env': Object.keys(envVars)
+  .reduce((env, key) => {
+    env[key] = JSON.stringify(envVars[key]);
+
+    return env;
+  }, {})
+};
 
 module.exports = {
   context: path.join(__dirname, '../src'),
@@ -60,6 +93,7 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.DefinePlugin(stringifiedEnv),
     new webpack.HotModuleReplacementPlugin(),
   ],
 
