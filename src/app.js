@@ -7,8 +7,13 @@ import * as quoteActions from './actions/quoteActions';
 
 const App = ({ quote = {} }) => (
   <div className="quote">
-    <div dangerouslySetInnerHTML={{ __html: quote.content }} className="content"/>
-    <p className="title">{quote.title}</p>
+    {quote.content && (
+      <div
+        dangerouslySetInnerHTML={{ __html: quote.content }}
+        className="content"
+      />
+    )}
+    {quote.title && <p className="title">{quote.title}</p>}
   </div>
 );
 
