@@ -1,5 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-const App = () => <div>Hello World</div>;
+import * as appActions from './actions/appActions';
 
-export default App;
+const App = ({ app = {} }) => <div>{app.name}</div>;
+
+App.propTypes = {
+  app: PropTypes.object,
+};
+
+export default connect(
+  ({ app }) => ({ app }),
+  dispatch => ({
+    storeAppName: () => dispatch(appActions.storeAppName()),
+  })
+)(App);
