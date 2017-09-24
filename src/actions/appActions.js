@@ -2,5 +2,5 @@ export const STORE_APP_NAME = 'STORE_APP_NAME';
 
 export const storeAppName = () => ({
   type: STORE_APP_NAME,
-  appName: 'React Redux Observable Starter',
+  payload: { name: 'React Redux Observable Starter' },
 });
