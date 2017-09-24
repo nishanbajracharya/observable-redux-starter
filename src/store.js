@@ -5,13 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import epic from './epics';
 import reducer from './reducers';
-import * as quoteService from './services/quoteService';
+import * as appService from './services/appService';
 
 const initialStore = {};
 
 const epicMiddleware = createEpicMiddleware(epic, {
   dependencies: {
-    quoteService,
+    appService,
   },
 });
 

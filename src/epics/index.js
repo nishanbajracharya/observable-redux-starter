@@ -1,5 +1,5 @@
 import { combineEpics } from 'redux-observable';
 
-import quoteEpic from './quoteEpic';
+import appEpic from './appEpic';
 
-export default combineEpics(quoteEpic);
+export default combineEpics(appEpic);

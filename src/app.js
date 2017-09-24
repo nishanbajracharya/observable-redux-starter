@@ -3,33 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, lifecycle } from 'recompose';
 
-import * as quoteActions from './actions/quoteActions';
+import * as appActions from './actions/appActions';
 
-const App = ({ quote = {}, fetchQuote = f => f }) => (
-  <div className="quote">
-    {quote.title && <p className="content">{quote.title}</p>}
-    {quote.author && <p className="title">{quote.author}</p>}
-    <button className="btn" onClick={() => fetchQuote()}>
-      Another
-    </button>
-  </div>
-);
+const App = ({ app = {} }) => <div>{app.name}</div>;
 
 App.propTypes = {
-  quote: PropTypes.object,
-  fetchQuote: PropTypes.func,
+  app: PropTypes.object,
 };
 
 export default compose(
   connect(
-    ({ quote }) => ({ quote }),
+    ({ app }) => ({ app }),
     dispatch => ({
-      fetchQuote: () => dispatch(quoteActions.fetchQuote()),
+      fetchAppName: () => dispatch(appActions.fetchAppName()),
     })
   ),
   lifecycle({
     componentDidMount() {
-      this.props.fetchQuote();
+      this.props.fetchAppName();
     },
   })
 )(App);
