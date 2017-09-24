@@ -1,0 +1,25 @@
+{
+  "name": "react-redux-observable-starter",
+  "version": "1.0.0",
+  "description": "A starter kit for developing single page applications using react, redux, recompose and redux-observable.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nishanbajracharya/react-redux-observable-starter.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "recompose",
+    "redux-observable"
+  ],
+  "author": "Nishan Bajracharya <nisbaj11@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nishanbajracharya/react-redux-observable-starter/issues"
+  },
+  "homepage": "https://github.com/nishanbajracharya/react-redux-observable-starter#readme"
+}
