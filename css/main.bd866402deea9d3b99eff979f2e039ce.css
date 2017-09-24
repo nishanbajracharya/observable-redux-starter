@@ -1,0 +1,60 @@
+@charset "UTF-8";
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #efefef; }
+
+* {
+  font-family: 'Open Sans', sans-serif; }
+
+.quote {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center; }
+  .quote .content {
+    font-size: 3.5em;
+    position: relative;
+    margin: 5em 0 2em 0;
+    color: #333;
+    quotes: '\201C' '\201D' '\2018' '\2019';
+    font-family: 'PT Serif', 'Garamond', serif; }
+  .quote .content:before {
+    color: #999;
+    content: open-quote; }
+  .quote .content:after {
+    color: #999;
+    content: close-quote; }
+  .quote .title {
+    font-size: 1.5em;
+    color: #666; }
+  .quote .title:before {
+    content: ' - '; }
+  .quote .btn {
+    left: 50%;
+    border: none;
+    bottom: 20px;
+    color: #fff;
+    outline: none;
+    margin: 0 auto;
+    position: fixed;
+    cursor: pointer;
+    transition: .3s;
+    padding: 1em 2em;
+    background: #49c;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transform: translate(-50%, -50%); }
+  .quote .btn:hover {
+    background: #48b; }
+  .quote .btn:active {
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.4); }
+
+@media screen and (max-width: 480px) {
+  .quote .content {
+    margin: 6em 0;
+    font-size: 1.2em; }
+  .quote .title {
+    font-size: 1em; } }
+
+/*# sourceMappingURL=main.bd866402deea9d3b99eff979f2e039ce.css.map*/
