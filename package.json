@@ -2,7 +2,7 @@
   "name": "react-redux-observable-starter",
   "version": "1.0.0",
   "description": "A starter kit for developing single page applications using react, redux, recompose and redux-observable.",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "lint": "eslint src test",
     "prestart": "npm run build",

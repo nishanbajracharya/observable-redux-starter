@@ -1,8 +1,8 @@
 {
   "env": {
+    "es6": true,
     "browser": true,
-    "commonjs": true,
-    "es6": true
+    "commonjs": true
   },
   "extends": ["eslint:recommended", "plugin:react/recommended"],
   "parserOptions": {
@@ -15,8 +15,17 @@
   "plugins": ["react"],
   "rules": {
     "indent": ["error", 2],
+    "semi": ["error", "always"],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
     "linebreak-style": ["error", "unix"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"]
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "comma-spacing": ["error", { "before": false, "after": true }]
   }
 }
