@@ -51,7 +51,7 @@
     "eslint-plugin-react": "^7.3.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "html-webpack-plugin": "^2.30.1",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "prop-types": "^15.5.10",
     "react-hot-loader": "^3.0.0-beta.7",
     "redux-devtools-extension": "^2.13.2",
